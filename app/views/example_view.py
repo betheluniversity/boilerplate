@@ -1,6 +1,13 @@
-from flask import render_template
+# Imports from Python global packages
+
+# Imports from packages installed from requirements.txt
+from flask import make_response, redirect, render_template, request, session
 from flask.wrappers import Response as FlaskResponse
-from flask_classy import FlaskView
+from flask_classy import FlaskView, route
+from werkzeug.datastructures import ImmutableMultiDict
+
+# Imports from elsewhere in this project
+from app import app
 
 
 class ExampleView(FlaskView):
@@ -19,17 +26,38 @@ class ExampleView(FlaskView):
     def index(self):
         return render_template('index.html', python_variable='How to pass a variable from Python to HTML')
 
-    # def get(self):
-    #     pass
-
-    def post(self):
-        pass
-
+    @route('/custom-name')
     def decorated_get_route(self):
-        pass
+        custom_content = '<p>Hello. This content was generated in the Python code</p>'
+        return render_template('pass_through.html', raw_content=custom_content)
 
+    @route('/args/<arg1>/<arg2>')
     def decorated_get_route_with_args(self, arg1, arg2):
-        pass
+        custom_content = '<p>The arguments sent to /args are %s and %s<p>' % (arg1, arg2)
+        return render_template('pass_through.html', raw_content=custom_content)
 
+    @route('/post-submission', methods=['POST'])
     def decorated_post_route(self):
-        pass
+        form = request.form
+        if isinstance(form, ImmutableMultiDict):
+            raw_data = form.to_dict()
+        else:
+            raw_data = {}
+        parsed_data = """
+        <div>
+            The data sent to POST /form-submission is:<br/>
+            %s
+        </div>
+        """ % raw_data
+        return render_template('pass_through.html', raw_content=parsed_data)
+
+    @route('/favicon.ico')
+    def favicon(self):
+        return redirect('/static/images/favicon.ico')
+
+    def logout(self):
+        session.clear()
+        resp = make_response(redirect(app.config['LOGOUT_URL']))
+        resp.set_cookie('MOD_AUTH_CAS_S', '', expires=0)
+        resp.set_cookie('MOD_AUTH_CAS', '', expires=0)
+        return resp

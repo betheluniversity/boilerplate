@@ -1,0 +1,9 @@
+{% extends 'bases/base.html' %}
+
+{% set page_title = 'Pass Through' %}
+
+{% block main_content %}
+    <div>
+        {{ raw_content | safe }}
+    </div>
+{% endblock %}

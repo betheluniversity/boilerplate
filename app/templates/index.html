@@ -27,5 +27,11 @@
     <pre>
         {{ python_variable }}
     </pre>
+    <form id="example_form" action="{{ url_for('ExampleView:decorated_post_route') }}" method="post">
+        <!-- All inputs that you want to be sent to the server have to have the "name" attribute -->
+        <label for="first">First input:</label><input type="text" id="first" name="first"/><br/>
+        <label for="second">Second input:</label><input type="text" id="second" name="second"/><br/>
+        <label for="submit">Send the form</label><input type="submit" id="submit" value="Submit"/>
+    </form>
 {% endblock %}
 
