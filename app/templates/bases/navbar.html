@@ -1,3 +1,13 @@
-<div>
-    I AM THE NAVBAR
-</div>
+<nav class="xnavbar navbar-inverse navbar__main" style="background: #123563">
+    <div class="inner">
+        <div class="navbar__logo-tabs">
+            <a class="logo__link" href="{{ url_for('ExampleView:index') }}">
+                <img class="logo--main" src="https://www.bethel.edu/cdn/images/logo.png" alt="Bethel University logo">
+            </a>
+            <div class="navbar__pages">
+                <a href="{{ url_for('ExampleView:index') }}">Home</a>
+                <a href="{{ url_for('ExampleView:decorated_get_route') }}">Custom Link</a>
+            </div>
+        </div>
+    </div>
+</nav>
