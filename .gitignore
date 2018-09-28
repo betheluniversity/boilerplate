@@ -5,3 +5,7 @@ __pycache__/
 .idea
 
 config.py
+
+*.db
+
+sqlite_db_repository

@@ -1,3 +1,5 @@
 Flask-Classy
+Flask-SQLAlchemy
 Flask
 werkzeug
+SQLAlchemy

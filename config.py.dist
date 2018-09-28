@@ -10,4 +10,16 @@ TEST_USERNAME = ''
 AUTH_USERNAME = ''
 AUTH_PASSWORD = ''
 
+ORACLE_CONNECTION = {
+    'USER': '',
+    'PASSWORD': '',
+    'HOST': '',
+    'SERVICE_NAME': ''
+}
+
+basedir = os.path.abspath(INSTALL_LOCATION)
+SQLALCHEMY_TRACK_MODIFICATIONS = False
+SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'app.db')
+SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'sqlite_db_repository')
+
 LOGOUT_URL = ''
