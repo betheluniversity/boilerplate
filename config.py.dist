@@ -7,4 +7,7 @@ INSTALL_LOCATION = os.path.dirname(__file__)
 
 TEST_USERNAME = ''
 
+AUTH_USERNAME = ''
+AUTH_PASSWORD = ''
+
 LOGOUT_URL = ''

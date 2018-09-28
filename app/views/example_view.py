@@ -8,6 +8,8 @@ from werkzeug.datastructures import ImmutableMultiDict
 
 # Imports from elsewhere in this project
 from app import app
+from app.controllers.auth import uses_basic_auth
+from app.controllers.example_controller import large_computational_function
 
 
 class ExampleView(FlaskView):
@@ -50,6 +52,11 @@ class ExampleView(FlaskView):
         </div>
         """ % raw_data
         return render_template('pass_through.html', raw_content=parsed_data)
+
+    @uses_basic_auth
+    def cronjob(self):
+        content = "<p>The sum of all numbers from 1 to 10 is %s" % large_computational_function(10)
+        return render_template('pass_through.html', raw_content=content)
 
     @route('/favicon.ico')
     def favicon(self):
