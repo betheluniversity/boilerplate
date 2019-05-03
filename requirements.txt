@@ -2,4 +2,4 @@ Flask-Classy
 Flask-SQLAlchemy
 Flask
 werkzeug
-SQLAlchemy
+SQLAlchemy>=1.3.0
